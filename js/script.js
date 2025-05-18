@@ -1,37 +1,170 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Navigation Toggle
+    // Elements
+    const header = document.querySelector('header');
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
+    const dropdowns = document.querySelectorAll('.dropdown');
     
-    if (hamburger) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navList.classList.toggle('active');
-        });
-    }
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('#main-nav') && navList.classList.contains('active')) {
-            navList.classList.remove('active');
-            hamburger.classList.remove('active');
+    // Change header background on scroll with a more subtle transition
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 30) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
     });
     
-    // Mobile dropdown toggle
-    const dropdowns = document.querySelectorAll('.dropdown');
-    
-    if (window.innerWidth <= 768) {
-        dropdowns.forEach(dropdown => {
-            const dropdownLink = dropdown.querySelector('a');
+    // Mobile menu toggle with improved handling
+    if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navList.classList.toggle('active');
             
-            dropdownLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-            });
+            // Prevent body scrolling when menu is open
+            if (navList.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
     }
+    
+    // Handle dropdown clicks on mobile with smoother transitions
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                
+                // Toggle active class with a slight delay for smooth animations
+                if (dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                } else {
+                    // Close other dropdowns first
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                    
+                    // Then open this one
+                    setTimeout(() => {
+                        dropdown.classList.add('active');
+                    }, 10);
+                }
+            }
+        });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768 && navList.classList.contains('active')) {
+            if (!navList.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navList.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Close all dropdowns
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        }
+    });
+    
+    // Close mobile menu when window is resized
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            navList.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Close all dropdowns
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+    });
+    
+    // Add smooth scrolling to anchor links with improved offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            if (this.getAttribute('href') !== '#' && this.getAttribute('href') !== '#!') {
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        hamburger.classList.remove('active');
+                        navList.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                    
+                    // Calculate header height dynamically for better positioning
+                    const headerHeight = header.offsetHeight;
+                    const scrollPosition = targetElement.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Highlight active menu item based on scroll position with improved accuracy
+    const navSections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-list a');
+    
+    function setActiveNavItem() {
+        let current = '';
+        const scrollY = window.pageYOffset;
+        const headerHeight = header.offsetHeight;
+        
+        navSections.forEach(section => {
+            const sectionTop = section.offsetTop - headerHeight - 100;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                current = sectionId;
+            }
+        });
+        
+        // Remove active class from all navigation links
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Add active class to current section link
+        if (current) {
+            const activeLinks = document.querySelectorAll(`.nav-list a[href="#${current}"]`);
+            
+            activeLinks.forEach(link => {
+                link.classList.add('active');
+                
+                // Handle parent dropdown if link is inside one
+                const parentLi = link.closest('li');
+                if (parentLi && parentLi.closest('.dropdown-menu')) {
+                    const dropdownLink = parentLi.closest('.dropdown').querySelector('a');
+                    if (dropdownLink) {
+                        dropdownLink.classList.add('active');
+                    }
+                }
+            });
+        }
+    }
+    
+    // Check active section on load and scroll
+    window.addEventListener('scroll', setActiveNavItem);
+    window.addEventListener('load', setActiveNavItem);
     
     // Testimonial Slider
     const testimonialSlides = document.querySelectorAll('.testimonial-slide');
@@ -98,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Scroll animation for sections
-    const sections = document.querySelectorAll('section');
+    const animatedSections = document.querySelectorAll('section');
     
     // Function to check if an element is in viewport
     function isInViewport(element) {
@@ -110,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to handle scroll animation
     function handleScrollAnimation() {
-        sections.forEach(section => {
+        animatedSections.forEach(section => {
             if (isInViewport(section) && !section.classList.contains('animate')) {
                 section.classList.add('animate');
                 section.style.opacity = 1;
@@ -120,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize sections with animation properties
-    sections.forEach(section => {
+    animatedSections.forEach(section => {
         section.style.opacity = 0;
         section.style.transform = 'translateY(20px)';
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -131,32 +264,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check sections on scroll
     window.addEventListener('scroll', handleScrollAnimation);
-    
-    // Smooth scrolling for anchor links
-    const anchors = document.querySelectorAll('a[href^="#"]');
-    
-    anchors.forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            
-            if (targetId === '#') return;
-            
-            e.preventDefault();
-            
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                // Close mobile menu if open
-                if (navList.classList.contains('active')) {
-                    navList.classList.remove('active');
-                    hamburger.classList.remove('active');
-                }
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
 }); 
