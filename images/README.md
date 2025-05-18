@@ -1,47 +1,54 @@
-# AARIN Website Images Guide
+# AARIN Website Images
 
-This folder should contain the following images for the AARIN Research website. You can replace the placeholder images with actual images related to academic research, consulting, and PhD guidance.
+This directory contains all the images used for the AARIN Research website.
 
-## Required Images
+## Directory Structure
 
-### Homepage Images
-- `hero-bg.jpg` - Background image for the hero section (1920x1080px recommended)
-- `about-placeholder.jpg` - Image for the About section (600x400px recommended)
-- `phd-guidance-placeholder.jpg` - Image for the PhD Guidance section (600x400px recommended)
-- `cta-bg.jpg` - Background image for the Call-to-Action section (1920x800px recommended)
+- `backgrounds/` - Background images for various sections
+- `services/` - Images related to academic services offered
+- `team/` - Team member profile images
+- `about/` - Images used in the About and Mission sections
 
-### About Page Images
-- `what-we-do-placeholder.jpg` - Image for the What We Do section (600x400px recommended)
-- `mission-placeholder.jpg` - Image for the Our Mission section (600x400px recommended)
-- `team-placeholder-1.jpg`, `team-placeholder-2.jpg`, `team-placeholder-3.jpg`, `team-placeholder-4.jpg` - Team member images (300x400px recommended)
+## Image Inventory
 
-### Services Page Images
-- `thesis-writing-placeholder.jpg` - Image for Thesis Writing service (600x400px recommended)
-- `paper-publishing-placeholder.jpg` - Image for Paper Publishing service (600x400px recommended)
-- `data-analysis-placeholder.jpg` - Image for Data Analysis service (600x400px recommended)
-- `software-implementation-placeholder.jpg` - Image for Software Implementation service (600x400px recommended)
-- `literature-review-placeholder.jpg` - Image for Literature Review service (600x400px recommended)
-- `editing-placeholder.jpg` - Image for Proofreading & Editing service (600x400px recommended)
+### Background Images
+- `backgrounds/hero-bg.jpg` - Hero section background
+- `backgrounds/cta-bg.jpg` - Call-to-action section background
+- `backgrounds/page-banner-bg.jpg` - Banner background for internal pages
 
-### Contact Page Images
-- `map-placeholder.jpg` - Map image for the Contact page (1200x400px recommended)
+### Service Images
+- `services/thesis-writing-placeholder.jpg` - Thesis writing service
+- `services/paper-publishing-placeholder.jpg` - Paper publishing service
+- `services/data-analysis-placeholder.jpg` - Data analysis service
+- `services/software-implementation-placeholder.jpg` - Software implementation service
+- `services/literature-review-placeholder.jpg` - Literature review service
+- `services/editing-placeholder.jpg` - Editing and proofreading service
 
-### Common Images
-- `page-banner-bg.jpg` - Background image for page banners (1920x400px recommended)
-- `logo.png` - Company logo (if you want to replace the text logo)
+### PhD Guidance
+- `phd-guidance-placeholder.jpg` - Main PhD guidance section image
 
-## Image Guidelines
+### About Section
+- `about-placeholder.jpg` - Main about section image
+- `about/what-we-do-placeholder.jpg` - What we do image
+- `about/mission-placeholder.jpg` - Mission section image
 
-1. Use professional, high-quality images that relate to academic research and consulting
-2. Avoid copyrighted images - use royalty-free stock photos or create your own
-3. Optimize images for web to ensure fast loading times
-4. Maintain consistent style and color scheme across all images
-5. Consider using images with people working in academic/research environments
+### Team Images
+- `team/team-placeholder-1.jpg` - Team member 1
+- `team/team-placeholder-2.jpg` - Team member 2
+- `team/team-placeholder-3.jpg` - Team member 3
+- `team/team-placeholder-4.jpg` - Team member 4
 
-## Free Stock Photo Resources
+### Other
+- `map-placeholder.jpg` - Map image for contact page
+- `aarin logo.png` - AARIN company logo
 
-Here are some resources where you can find free stock photos:
-- [Unsplash](https://unsplash.com/)
-- [Pexels](https://www.pexels.com/)
-- [Pixabay](https://pixabay.com/)
-- [StockSnap.io](https://stocksnap.io/) 
+## Image Credits
+
+All images are royalty-free stock photos from Pexels.com and are used for placeholder purposes.
+
+## Usage Guidelines
+
+- All images should be optimized for web (reasonable file size while maintaining quality)
+- Background images should be at least 1920px wide
+- Service and content images should be at least 600px wide
+- Team member photos should be square format (1:1 ratio) 

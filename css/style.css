@@ -326,7 +326,7 @@ header .container {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.8)), url('../images/hero-bg.jpg');
+    background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.8)), url('../images/backgrounds/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     padding: 150px 0;
@@ -626,7 +626,7 @@ header .container {
 
 /* CTA Section */
 .cta {
-    background: linear-gradient(rgba(75, 108, 183, 0.9), rgba(75, 108, 183, 0.9)), url('../images/cta-bg.jpg');
+    background: linear-gradient(rgba(75, 108, 183, 0.9), rgba(75, 108, 183, 0.9)), url('../images/backgrounds/cta-bg.jpg');
     background-size: cover;
     background-position: center;
     text-align: center;
@@ -762,7 +762,7 @@ footer {
 
 /* Page Banner */
 .page-banner {
-    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('../images/page-banner-bg.jpg');
+    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('../images/backgrounds/page-banner-bg.jpg');
     background-size: cover;
     background-position: center;
     padding: 100px 0;
