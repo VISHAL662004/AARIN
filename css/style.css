@@ -330,6 +330,12 @@ header .container {
     margin-top: 10px;
 }
 
+/* .dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+} */
+
 .dropdown-menu::before {
     content: '';
     position: absolute;
@@ -346,7 +352,7 @@ header .container {
 .dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(-5px);
     pointer-events: auto;
 }
 
@@ -838,7 +844,7 @@ footer {
 }
 
 .footer-bottom {
-    background-color: #121212;
+    background-color: #1a1a1a;
     padding: 20px 0;
     text-align: center;
     margin-top: 60px;
@@ -2266,3 +2272,9 @@ footer {
     border-radius: 4px;
     transition: width 0.5s ease;
 } 
+
+/* Center Align Headings */
+
+.center-text {
+  text-align: center;
+}

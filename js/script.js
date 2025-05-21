@@ -265,3 +265,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check sections on scroll
     window.addEventListener('scroll', handleScrollAnimation);
 }); 
+
+   
