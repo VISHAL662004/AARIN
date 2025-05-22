@@ -238,14 +238,14 @@ header .container {
 }
 
 .nav-list li {
-    margin-left: 30px;
+    margin-left: 6px;
     position: relative;
 }
 
 .nav-list li a {
     color: var(--light-text);
     font-weight: 500;
-    padding: 8px 5px;
+    padding: 8px 6px;
     position: relative;
     letter-spacing: 0.3px;
     transition: all 0.3s ease;
